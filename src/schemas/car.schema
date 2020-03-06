@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Car specification",
+  "description": "Especificacoes do veiculo",
+  "type": "object",
+  "properties" : {
+    "Cor" : {
+      "description": "Cor do veiculo XXX",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3
+    },
+    "Placa" : {
+      "description": "Placa do veiculo XXXX-XXXX",
+      "type": "string",
+      "pattern": "^.{4}-.{4}$"
+    },
+    "Ano" : {
+      "description": "Ano do veiculo XXXX",
+      "type": "string",
+      "pattern": "^\\d{4}$"
+    },
+    "Modelo": {
+      "description": "Modelo do veiculo XXXX",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4
+    }
+  },
+  "required": ["Cor", "Placa", "Ano", "Modelo"],
+  "additionalProperties": false
+}
