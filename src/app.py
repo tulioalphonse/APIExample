@@ -3,6 +3,7 @@ import logging
 import sys
 import os
 import toml
+import MySQLdb
 
 from flask import Flask, request, Response
 from flask_mysqldb import MySQL
@@ -61,7 +62,7 @@ def add_car():
     cur.execute(stmt)
     mysql.connection.commit()
     cur.close()
-    return "OK"
+    return Response("id: {}".format(car_json["Placa"]), 201)
 
 
 @app.route('/get/car/<placa>', methods=['GET'])
@@ -75,6 +76,12 @@ def get_car(placa):
 def invalid_json_format(error):
     logger.exception(error)
     return Response(error.message, 400)
+
+
+@app.errorhandler(MySQLdb.IntegrityError)
+def integrity_error_format(error):
+    logger.exception(error)
+    return Response("Error: {}".format(error), 500)
 
 
 def get_app():

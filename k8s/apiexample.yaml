@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apiexample
+spec:
+  ports:
+  - port: 5000
+  selector:
+    app: apiexample
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apiexample
+spec:
+  selector:
+    matchLabels:
+      app: apiexample
+  template:
+    metadata:
+      labels:
+        app: apiexample
+    spec:
+      containers:
+      - image: api-example:latest
+        imagePullPolicy: Never
+        name: apiexample
+        env:
+        - name: API_EXAMPLE_CONFIG_PATH
+          value: "/apiexample/conf/config.toml"
+        ports:
+        - containerPort: 5000
+          name: api-port
+        volumeMounts:
+        - name: api-config
+          mountPath: /apiexample/conf
+      volumes:
+        - name: api-config
+          configMap:
+              name: api-config

@@ -2,7 +2,7 @@ FROM python:3.6.9-alpine
 
 WORKDIR /data/workspace/apiexample
 
-COPY src/* /data/workspace/apiexample/
+COPY ./src /data/workspace/apiexample/
 
 ENV PYTHONPATH /data/workspace
 

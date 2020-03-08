@@ -3,5 +3,5 @@ title = "Flask Config"
 [mysql]
 host = "127.0.0.1"
 user = "root"
-password = "root"
+password = "w2q0Vp7HZp"
 db = "APIExample"

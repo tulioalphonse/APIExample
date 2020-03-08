@@ -6,16 +6,19 @@ import os
 import jinja2
 from pathlib import Path
 
+ACTUAL_FILE_PATH = os.path.abspath(os.path.dirname(__file__))
+
 
 def create_config(outputPath, **kwargs):
-    template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath="./"))
+    template_env = jinja2.Environment(loader=jinja2.FileSystemLoader(searchpath=ACTUAL_FILE_PATH))
     template = template_env.get_template("config.toml.jinja")
     output_text = template.render(kwargs)
     Path(os.path.abspath(outputPath)).mkdir(parents=True, exist_ok=True)
-    f = open(os.path.abspath(os.path.join(outputPath, "config.toml")), "w")
+    config_path = os.path.abspath(os.path.join(outputPath, "config.toml"))
+    f = open(config_path, "w")
     f.write(output_text)
     f.close()
-    print("Saved file to {}/config.toml".format(outputPath))
+    print("Saved file to {}".format(config_path))
 
 
 def main(argv):

@@ -1,10 +1,11 @@
 title = "APIExample"
 
 [logging]
-level = "{{ _logging_conf.get('level', 'NOTSET') }}"
+    level = "{{ _logging_conf.get('level', 'NOTSET') }}"
 
 [mysql]
-host = "{{ _mysql_conf.get('host', '127.0.0.1') }}"
-user = "{{ _mysql_conf.get('user', 'root') }}"
-password = "{{ _mysql_conf.get('password', 'root') }}"
-db = "{{ _mysql_conf.get('db', 'APIExample') }}"
+    host = "{{ _mysql_conf.get('host', '127.0.0.1') }}"
+    user = "{{ _mysql_conf.get('user', 'root') }}"
+    password = "{{ _mysql_conf.get('password', 'root') }}"
+    db = "{{ _mysql_conf.get('db', 'APIExample') }}"
+
